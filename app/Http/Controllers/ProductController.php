@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -44,9 +45,11 @@ class ProductController extends Controller
         ]);
 
         Product::create($request->all());
+        // Session::flash('success', 'Product created successfully.');
 
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
+
     }
 
     /**

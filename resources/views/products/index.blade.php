@@ -1,7 +1,33 @@
 @extends('products.layout')
 @section('title', 'All Products')
 
+@section('importjs')
+    @parent
+
+    {{-- <script>
+        $(document).ready(function() {
+            $("p").click(function() {
+                $(this).hide();
+            });
+        });
+    </script> --}}
+
+    <script>
+        $(document).ready(function() {
+            window.setTimeout(function() {
+                $(".alert").fadeTo(700, 0).slideUp(500, function() {
+                    $(this).remove()
+                })
+            }, 2e3)
+        });
+    </script>
+
+
+@stop
+
 @section('content')
+
+
     <div class="row">
         <div class="col-lg-12 my-3">
             <div class="float-start">
@@ -18,6 +44,16 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+
+    {{-- @if (\Session::has('success'))
+        <script type="text/javascript">
+            swal({
+                title: "Good Job!",
+                text: "{{ session('success') }}"
+                icon: "success",
+            });
+        </script>
+    @endif --}}
 
     <table class="table table-bordered">
         <thead>
@@ -55,5 +91,7 @@
     </table>
 
     {!! $products->links() !!}
+
+
 
 @endsection
